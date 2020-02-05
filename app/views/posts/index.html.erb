@@ -3,7 +3,7 @@
 <h2 class= "text"> List of all posts</h2>
 
 <div class = "imagenes" >
-<% @posts.each do |post| %> (here maybe something about how to count the likes in a post)
+<% @posts.each do |post| %>
 <div class = "imagen">
   <%= image_tag post.image, class: "my-image" %>
   <p><%= post.caption %></p>
