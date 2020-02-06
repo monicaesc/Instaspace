@@ -3,13 +3,14 @@
 <h2 class= "text"> List of all posts</h2>
 
 <div class = "imagenes" >
-<% @posts.each do |post| %>
-<div class = "imagen">
-  <%= image_tag post.image, class: "my-image" %>
-  <p><%= post.caption %></p>
-<%= button_to "LIKE", {:controller => "likes", :action => "create", :post_id => post.id}, :method => :post %>
-<p><%= post.caption %></p>
-
-  </div>
-<% end %>
+  <% @posts.each do |post| %>
+    <div class = "imagen">
+      <%= image_tag post.image, class: "my-image" %>
+      <p><%= post.caption %></p>
+      <%= button_to({:controller => "likes", :action => "create", :post_id => post.id}, :method => :post) do  %>
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+      <% end %>
+      <p><%= post.likes.length %></p>
+    </div>
+  <% end %>
 </div>
