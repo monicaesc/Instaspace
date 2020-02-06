@@ -5,7 +5,8 @@
 <div class = "imagenes" >
   <% @posts.each do |post| %>
     <div class = "imagen">
-      <%= image_tag post.image, class: "my-image" %>
+      <p><%= post.user.email %></p> 
+      <%= link_to(image_tag(post.image, class: "my-image"), post)%>
       <p><%= post.caption %></p>
       <%= button_to({:controller => "likes", :action => "create", :post_id => post.id}, :method => :post) do  %>
         <span class="glyphicon glyphicon-thumbs-up"></span>

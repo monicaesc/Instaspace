@@ -20,10 +20,47 @@ class PostsController <ApplicationController
     redirect_back(fallback_location :root_path)
     flash[:alert] = "Post creation failed"
   end
+end
+
+  def destroy
+    post = Post.find(params[:id])
+    if current_user == post.user
+    post.destroy
+   redirect_to "/posts"
+   flash[:notice] = "Post destroyed"
+  else
+    redirect_back(fallback_location: root_path)
+    flash[:alert] = "Not authorized to delete post"
+  end
+end
+
+  def edit
+    @post = Post.find(params[:id])
+    if current_user != @post.user
+      redirect_to "/"
+      flash[:alert] = "Unauthorized request"
+  end
+end
+
+  def update
+    post = Post.find(params[:id])
+    if current_user == post.user
+    post.update(update_params)
+    redirect_to post
+    flash[:notice] = "Update succesful!"
+    else
+    redirect_back(fallback_location: root_path)
+    flash[:alert] = "Not authorized to update post"
+  end
   end
 
   private
+
   def post_params
     params.require(:post).permit(:caption, :image)
+  end
+
+  def update_params
+    params.require(:post).permit(:caption)
   end
 end

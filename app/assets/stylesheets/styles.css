@@ -23,12 +23,13 @@
 
 .imagenes{
   display: flex;
+  flex-wrap: wrap;
 }
 
 .imagen{
-  margin: 20px;
+  margin: 40px;
    margin-top: 15px;
    margin-left: 50px;
-   padding: 50px;
-   width: 200px;}
+   padding: 10px;
+   width: 300px;}
 }
